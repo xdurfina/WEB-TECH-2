@@ -6,6 +6,7 @@
  * Time: 18:12
  */
 
-echo "No čo je programatori, ide vam Github?"
+echo "No čo je programatori, ide vam Github?";
+echo "simonovi ide";
 ?>
 
