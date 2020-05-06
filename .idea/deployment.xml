@@ -2,10 +2,10 @@
 <project version="4">
   <component name="PublishConfigData">
     <serverData>
-      <paths name="webtech2">
+      <paths name="w">
         <serverdata>
           <mappings>
-            <mapping deploy="/zaverecny_projekt" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/zadanie_zaverecne" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>

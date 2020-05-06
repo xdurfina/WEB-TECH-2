@@ -8,5 +8,6 @@
 
 echo "No čo je programatori, ide vam Github?";
 echo "simonovi ide";
+echo "IDE )<";
 ?>
 
