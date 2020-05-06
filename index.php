@@ -14,6 +14,7 @@
 <body>
 
 <h1>WEBTECH 2 ZAVERECNY PROJEKT</h1>
+<h2> :)asdasdasdasdasdasdas</h2>
 <p>(C) Ďurfina, Plaštiak, Zaujec, Török</p>
 
 </body>
