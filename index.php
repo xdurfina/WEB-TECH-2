@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Page Title</title>
+    <title>ZADANIE</title>
 </head>
 <body>
 
