@@ -15,6 +15,7 @@
 
 <p>Dobry den</p>
 <h1>WEBTECH 2 ZAVERECNY PROJEKT</h1>
+<h2> :)asdasdasdasdasdasdas</h2>
 <p>(C) Ďurfina, Plaštiak, Zaujec, Török</p>
 <p>I LIKE TO COMMIT COMMIT, I LIKE TO COMMIT COMMIT - YOU LIKE TO?</p>
 </body>
