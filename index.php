@@ -1,3 +1,24 @@
+<?php
+
+//$cmd=ltrim(shell_exec('ls'));
+
+//$fh = fopen('/octave-modely/lietadlo.txt','r');
+//echo $fh;
+
+ob_start();
+include("octave-modely/gulicka.m");
+ob_end_clean();
+
+//fclose($file);
+//$output = ltrim(shell_exec("octave --eval  'disp (pi); 1+1'"));
+
+$cmd= "octave --eval 'gulicka.m'";
+
+$output=exec($cmd,$out);
+var_dump($out);
+
+//echo"<pre> $out </pre>"
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +27,7 @@
 </head>
 
 <body>
+
     <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
 <script>
     var data = [
@@ -17,7 +39,8 @@
     ];
 
     Plotly.plot('myDiv', data);
-
 </script>
+
+
 </body>
 </html>
