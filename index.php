@@ -1,22 +1,23 @@
-<?php
-/**
- * Created by IntelliJ IDEA.
- * User: Jaroslav
- * Date: 6. 5. 2020
- * Time: 17:14
- */
-?>
 <!DOCTYPE html>
 <html>
 <head>
-    <title>ZADANIE</title>
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
 </head>
-<body>
 
-<p>Dobry den</p>
-<h1>WEBTECH 2 ZAVERECNY PROJEKT</h1>
-<h2> :)asdasdasdasdasdasdas</h2>
-<p>(C) Ďurfina, Plaštiak, Zaujec, Török</p>
-<p>I LIKE TO COMMIT COMMIT, I LIKE TO COMMIT COMMIT - YOU LIKE TO?</p>
+<body>
+    <div id='myDiv'><!-- Plotly chart will be drawn inside this DIV --></div>
+<script>
+    var data = [
+        {
+            x: ['giraffes', 'orangutans', 'monkeys','test'],
+            y: [20, 14, 23,44],
+            type: 'bar'
+        }
+    ];
+
+    Plotly.plot('myDiv', data);
+
+</script>
 </body>
 </html>
