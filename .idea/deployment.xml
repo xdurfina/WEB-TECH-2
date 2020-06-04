@@ -2,10 +2,17 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" serverName="webtech2">
     <serverData>
-      <paths name="webtech2">
+      <paths name="Octave">
         <serverdata>
           <mappings>
-            <mapping deploy="/zaverecny_projekt_simon" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/zaverecnaJaro" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="Webtech 2">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
