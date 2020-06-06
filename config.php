@@ -1,15 +1,10 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: Jaroslav
- * Date: 6. 5. 2020
- * Time: 18:12
- */
+$servername = "localhost";
+$username = "xzaujecs";
+$password = "slovania_ortielov";
+$databaseName= "finalnezadanie";
+$db = mysqli_connect($servername, $username, $password, $databaseName);
 
-echo "No čo je programatori, ide vam Github?";
-echo "simonovi ide";
-echo "IDE )<";
-echo "jaro je luhar xD";
-echo " ";
+$apikey="4b506c2968184be185f6282f5dcac238";
 ?>
 
