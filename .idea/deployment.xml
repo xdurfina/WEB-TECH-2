@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="webtech2">
+  <component name="PublishConfigData" autoUpload="Always">
     <serverData>
       <paths name="Octave">
         <serverdata>
           <mappings>
-            <mapping deploy="/zaverecnaJaro" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/zaverecnaJaro/git_stranka" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
