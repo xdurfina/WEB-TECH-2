@@ -1,4 +1,6 @@
-function ret=airplane
+pkg load control
+arg_list = argv();
+
 m = 0.111;
 R = 0.015;
 g = -9.8;
@@ -14,17 +16,18 @@ N = -inv(C*inv(A-B*K)*B);
 sys = ss(A-B*K,B,C,D);
 
 t = 0:0.01:5;
-r =0.25;
+r =str2double(arg_list{1});
+secondArgument = str2double(arg_list{2});
+
 initRychlost=0;
 initZrychlenie=0;
 [y,t,x]=lsim(N*sys,r*ones(size(t)),t,[initRychlost;0;initZrychlenie;0]);
-printf("t=%.10f \t y=%.10f \n",t,y);
-%printf("y=%.10f \n",y);
-%plot(t,y);
 
-r =0.5;
-[y,t,x]=lsim(N*sys,r*ones(size(t)),t,x(size(x,1),:));
-%plot(t,y);
-%printf("t2=%.10f \n",t);
-%printf("y2=%.10f \n",y);
-endfunction
+poziciaGulicky = N*x(:,1);
+naklonTyce = x(:,3);
+
+printf("t=%.10f \n",t);
+printf("g=%.10f \n",poziciaGulicky);
+printf("n=%.10f \n",naklonTyce);
+
+

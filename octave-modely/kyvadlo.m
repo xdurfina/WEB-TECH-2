@@ -1,3 +1,7 @@
+pkg load control
+format free
+arg_list = argv();
+
 M = .5;
 m = 0.2;
 b = 0.1;
@@ -16,12 +20,17 @@ N = -inv(C(1,:)*inv(A-B*K)*B);
 sys = ss(Ac,B*N,C,D);
 
 t = 0:0.05:10;
-r =0.2;
-initPozicia=0;
+r =str2double(arg_list{1});
+
+initPozicia=str2double(arg_list{2});
 initUhol=0;
 [y,t,x]=lsim(sys,r*ones(size(t)),t,[initPozicia;0;initUhol;0]);
-plot(t,y)
 
-r=0.5;
-[y,t,x]=lsim(sys,r*ones(size(t)),t,x(size(x,1),:));
-plot(t,y)
+poziciaKyvadla = x(:,1);
+uholKyvadla = x(:,3);
+
+printf("t=%.10f \n",t);
+printf("k=%.10f \n",poziciaKyvadla);
+printf("u=%.10f \n",uholKyvadla);
+
+
