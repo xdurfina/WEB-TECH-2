@@ -40,17 +40,17 @@ if(isset($_REQUEST['prikaz'])) {
                 <a class="nav-link" href="ulohy.php">Rozdelenie úloh</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="statistics.php">Štatistika</a>
+                <a class="nav-link" href="statistika.php">Štatistika</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Simulations
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Gulička</a>
-                    <a class="dropdown-item" href="#">Lietadlo</a>
-                    <a class="dropdown-item" href="#">Tlmič</a>
-                    <a class="dropdown-item" href="#">Prevrátené kyvadlo</a>
+                    <a class="dropdown-item" href="simulacie/gulicka.php">Gulička</a>
+                    <a class="dropdown-item" href="simulacie/lietadlo.php">Lietadlo</a>
+                    <a class="dropdown-item" href="simulacie/tlmic.php">Tlmič</a>
+                    <a class="dropdown-item" href="simulacie/kyvadlo.php">Prevrátené kyvadlo</a>
                 </div>
             </li>
         </ul>

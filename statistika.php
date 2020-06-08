@@ -117,10 +117,10 @@ if(isset($_POST['mail'])) {
                     <?php echo $lang['prelozene6']?>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#"><?php echo $lang['prelozene7']?></a>
-                    <a class="dropdown-item" href="#"><?php echo $lang['prelozene8']?></a>
-                    <a class="dropdown-item" href="#"><?php echo $lang['prelozene9']?></a>
-                    <a class="dropdown-item" href="#"><?php echo $lang['prelozene10']?></a>
+                    <a class="dropdown-item" href="simulacie/gulicka.php"><?php echo $lang['prelozene7']?></a>
+                    <a class="dropdown-item" href="simulacie/lietadlo.php"><?php echo $lang['prelozene8']?></a>
+                    <a class="dropdown-item" href="simulacie/tlmic.php"><?php echo $lang['prelozene9']?></a>
+                    <a class="dropdown-item" href="simulacie/kyvadlo.php"><?php echo $lang['prelozene10']?></a>
                 </div>
             </li>
         </ul>

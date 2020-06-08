@@ -32,7 +32,7 @@
                 <a class="nav-link" href="ulohy.php">Rozdelenie úloh</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="statistics.php">Štatistika</a>
+                <a class="nav-link" href="statistika.php">Štatistika</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
