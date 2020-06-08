@@ -136,12 +136,12 @@ if (isset($_REQUEST['cislo'])) {
                 return document.getElementById(id)
             };
 
-            fabric.Image.fromURL('../zaverecny_projekt_simon/lietadlo.png', function(img) {
+            fabric.Image.fromURL('obrazky/lietadlo.png', function(img) {
                 img1 = img.scale(0.35).set({  left: 100,
                     top: 105,
                     selectable: false,
                 });
-                fabric.Image.fromURL('../zaverecny_projekt_simon/flap.png', function(img) {
+                fabric.Image.fromURL('obrazky/flap.png', function(img) {
                     img2 = img.scale(0.35).set({
                         left: 180,
                         top: 170,
