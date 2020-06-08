@@ -1,9 +1,8 @@
 <?php
 $pos = 0;
-
 if (isset($_REQUEST['cislo'])) {
+    $hodnota = strval($_REQUEST['cislo']);
 
-    $hodnota = $_REQUEST['cislo'];
     $cmd = "octave -H ../octave-modely/tlmic.m $hodnota $pos 2>&1";
     exec($cmd, $output);
     $finalout = array();
@@ -19,13 +18,8 @@ if (isset($_REQUEST['cislo'])) {
     $cas = array_slice($finalout, 0, 501);
     $vozidlo = array_slice($finalout, -1002, 501);
     $tlmic = array_slice($finalout, 1002);
-
-
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,18 +31,14 @@ if (isset($_REQUEST['cislo'])) {
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.13/fabric.min.js"></script>
-
 </head>
 <body>
-
 <br>
-
 <h3 style="text-align: center">Simulácia - Tlmič auta</h3>
 <form action="tlmic.php" method="post">
     <label for="cislo">Velkost prekazky:</label>
-    <input type="text" name="cislo" id="cislo" required>
+    <input style="width: 100px;" type="number" name="cislo" id="cislo" required min="-100" max="100" placeholder="<-50, 100>">
     <label for="graf">Graf</label>
     <input type="checkbox" name="graf" id="graf">
     <label for="animacia">Animacia</label>
@@ -56,19 +46,15 @@ if (isset($_REQUEST['cislo'])) {
     <input type="submit" value="Submit">
     <?php echo "Zadana hodnota:" . $hodnota ?>
 </form>
-
 <div style="overflow: hidden;">
     <div style="width:50%; height:500px;float: left;">
         <canvas id="myChart" width="400" height="200"></canvas>
     </div>
-
     <div style="overflow: hidden;width:50%;">
-        <canvas id="c" width="600" height="400"></canvas>
+        <canvas id="c" width="1000" height="600"></canvas>
     </div>
 </div>
-
 <script>
-
     function runGraph() {
         var indexCounter = 0;
         var cas = <?php echo json_encode($cas); ?>;
@@ -78,7 +64,6 @@ if (isset($_REQUEST['cislo'])) {
         var casGraf = [];
         var vozidloGraf = [];
         var tlmicGraf = [];
-
 
         var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
@@ -108,7 +93,6 @@ if (isset($_REQUEST['cislo'])) {
             }
         });
 
-
         setInterval(function addValue() {
             if (indexCounter < 502) {
                 myChart.data.datasets[0].data.push(vozidlo[indexCounter]);
@@ -120,10 +104,7 @@ if (isset($_REQUEST['cislo'])) {
         }, 100);
     }
 </script>
-
-
 <script>
-
     function runAnimation() {
 
         var array = [];
@@ -138,36 +119,36 @@ if (isset($_REQUEST['cislo'])) {
                 return document.getElementById(id)
             };
 
-            fabric.Image.fromURL('car.png', function (img) {
+            fabric.Image.fromURL('../obrazky/car.png', function (img) {
                 img.scale(0.5).set({
                     left: 100,
-                    top: 105,
+                    top: 205,
                     selectable: false,
                     width: 1000,
                     height: 250,
-                })
+                });
                 canvas.add(img);
             });
 
             fabric.Image.fromURL('../obrazky/car_wheel.png', function (img2) {
                 img2.scale(0.5).set({
                     left: 144,
-                    top: 160,
+                    top: 260,
                     width: 150,
                     height: 150,
                     selectable: false,
-                })
+                });
                 canvas.add(img2);
             });
 
             fabric.Image.fromURL('../obrazky/car_wheel.png', function (img3) {
                 img3.scale(0.5).set({
                     left: 444,
-                    top: 160,
+                    top: 260,
                     width: 150,
                     height: 150,
                     selectable: false,
-                })
+                });
                 canvas.add(img3);
             });
 
@@ -180,32 +161,22 @@ if (isset($_REQUEST['cislo'])) {
             setInterval(function () {
                 if (i < array_length - 1) {
                     i++;
-                    canvas.getObjects()[0].top = (105 - array2[i] * 1);
-                    canvas.getObjects()[1].top = (160 - array[i] * 1);
-                    canvas.getObjects()[2].top = (160 - array[i] * 1);
+                    canvas.getObjects()[0].top = (205 - array2[i] * 1);
+                    canvas.getObjects()[1].top = (260 - array2[i] * 1 - array[i] * 1);
+                    canvas.getObjects()[2].top = (260 - array2[i] * 1 - array[i] * 1);
 
                     canvas.renderAll();
                     console.log(array[i]);
                 }
             }, 100);
-
         })();
     }
 </script>
-
 <?php
 if ($_REQUEST['graf'] == true) {
-    echo '<script type="text/javascript">
-runGraph();
-</script>';
-}
+    echo '<script>runGraph();</script>';}
 if ($_REQUEST['animacia'] == true ) {
-    echo '<script type="text/javascript">
-runAnimation();
-</script>';
-}
+    echo '<script>runAnimation();</script>';}
 ?>
-
-
 </body>
 </html>

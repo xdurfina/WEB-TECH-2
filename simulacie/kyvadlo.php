@@ -1,13 +1,11 @@
 <?php
 $pos = 0;
-
 if (isset($_REQUEST['cislo'])) {
 
-    $hodnota = $_REQUEST['cislo'];
+    $hodnota = strval($_REQUEST['cislo']);
     $cmd = "octave -H ../octave-modely/kyvadlo.m $hodnota $pos 2>&1";
     exec($cmd, $output);
     $finalout = array();
-
 
     foreach ($output as $value) {
         $localstring = substr($value, 2);
@@ -17,17 +15,11 @@ if (isset($_REQUEST['cislo'])) {
     unset($finalout[0]);
     unset($finalout[1]);
 
-
     $cas = array_slice($finalout, 0, 201);
     $kyvadlo = array_slice($finalout, -402, 201);
     $uholKyvadla = array_slice($finalout, 402);
-
-
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,17 +33,13 @@ if (isset($_REQUEST['cislo'])) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
-
-    <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.13/fabric.min.js"></script>-->
 </head>
 <body>
-
 <br>
-
 <h3 style="text-align: center">Simulácia - Prevrátené kyvadlo</h3>
 <form action="kyvadlo.php" method="post">
     <label for="cislo">Velkost prekazky:</label>
-    <input type="text" name="cislo" id="cislo" required>
+    <input style="width: 100px;" type="number" name="cislo" id="cislo" required min="-5" max="5" placeholder="<-5, 5>">
     <label for="graf">Graf</label>
     <input type="checkbox" name="graf" id="graf">
     <label for="animacia">Animacia</label>
@@ -59,18 +47,15 @@ if (isset($_REQUEST['cislo'])) {
     <input type="submit" value="Submit">
     <?php echo "Zadana hodnota:" . $hodnota ?>
 </form>
-
 <div style="overflow: hidden;">
     <div style="width:50%; height:500px;float: left;">
         <canvas id="myChart" width="400" height="200"></canvas>
     </div>
-
     <div style="overflow: hidden;width:50%;">
-        <canvas id="c" width="600" height="450"></canvas>
+        <canvas id="c" width="1000" height="400"></canvas>
     </div>
 </div>
 <script>
-
     function runGraph() {
         var indexCounter = 0;
         var cas = <?php echo json_encode($cas); ?>;
@@ -80,7 +65,6 @@ if (isset($_REQUEST['cislo'])) {
         var casGraf = [];
         var kyvadloGraf = [];
         var uholKyvadlaGraf = [];
-
 
         var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
@@ -110,7 +94,6 @@ if (isset($_REQUEST['cislo'])) {
             }
         });
 
-
         setInterval(function addValue() {
             if (indexCounter < 202) {
                 myChart.data.datasets[0].data.push(kyvadlo[indexCounter]);
@@ -122,8 +105,6 @@ if (isset($_REQUEST['cislo'])) {
         }, 100);
     }
 </script>
-
-
 <script>
     function radians_to_degrees(radians)
     {
@@ -131,7 +112,6 @@ if (isset($_REQUEST['cislo'])) {
         return radians * (180/pi);
     }
     function runAnimation() {
-
         var array = [];
         var array2 = [];
         var array_length;
@@ -145,8 +125,8 @@ if (isset($_REQUEST['cislo'])) {
             };
 
             fabric.Image.fromURL('../obrazky/pendulum_base.png', function(img) {
-                img2 = img.scale(0.35).set({
-                    left: 180,
+                img2 = img.scale(0.6).set({
+                    left: 250,
                     top: 335,
                     selectable: false,
                 });
@@ -154,8 +134,8 @@ if (isset($_REQUEST['cislo'])) {
             });
 
             fabric.Image.fromURL('../obrazky/pendulum_stick.png', function(img) {
-                img1 = img.scale(0.5).set({  left: 250,
-                    top: 360,
+                img1 = img.scale(0.6).set({  left: 365,
+                    top: 380,
                     selectable: false,
                     originY: 'bottom',
                     originX: 'center',
@@ -173,30 +153,22 @@ if (isset($_REQUEST['cislo'])) {
             setInterval(function () {
                 if (i < array_length - 1) {
                     i++;
-                    canvas.getObjects()[1].left = (250 + array[i]*50);
+                    canvas.getObjects()[1].left = (365 + array[i]*50);
                     canvas.getObjects()[1].angle = -(array2[i]*50);
-                    canvas.getObjects()[0].left = (180 + array[i]*50);
+                    canvas.getObjects()[0].left = (250 + array[i]*50);
                     canvas.renderAll();
                 }
             }, 100);
-
         })();
     }
 </script>
-
 <?php
 if ($_REQUEST['graf'] == true) {
-    echo '<script type="text/javascript">
-runGraph();
-</script>';
+    echo '<script>runGraph();</script>';
 }
 if ($_REQUEST['animacia'] == true ) {
-    echo '<script type="text/javascript">
-runAnimation();
-</script>';
+    echo '<script>runAnimation();</script>';
 }
 ?>
-
-
 </body>
 </html>

@@ -1,9 +1,8 @@
 <?php
 $pos = 0;
-
 if (isset($_REQUEST['cislo'])) {
 
-    $hodnota = $_REQUEST['cislo'];
+    $hodnota = strval($_REQUEST['cislo']);
     $cmd = "octave -H ../octave-modely/lietadlo.m $hodnota $pos 2>&1";
     exec($cmd, $output);
     $finalout = array();
@@ -23,8 +22,6 @@ if (isset($_REQUEST['cislo'])) {
     $klapka = array_slice($finalout, 802);
 }
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,16 +33,14 @@ if (isset($_REQUEST['cislo'])) {
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
-    <!--    <script src="https://unpkg.com/fabric@4.0.0-beta.8/dist/fabric.js"></script>-->
 </head>
 <body>
 <br>
 <h3 style="text-align: center">Simulácia - Lietadlo</h3>
 <form action="lietadlo.php" method="post">
     <label for="cislo">Velkost prekazky:</label>
-    <input type="text" name="cislo" id="cislo" required placeholder="od -1  do 1">
+    <input style="width: 100px" type="number" name="cislo" id="cislo" required placeholder="<-1, 1>" min="-1" max="1">
     <label for="graf">Graf</label>
     <input type="checkbox" name="graf" id="graf">
     <label for="animacia">Animacia</label>
@@ -53,18 +48,15 @@ if (isset($_REQUEST['cislo'])) {
     <input type="submit" value="Submit">
     <?php echo "Zadana hodnota:" . $hodnota ?>
 </form>
-
 <div style="overflow: hidden;">
     <div style="width:50%; height:500px;float: left;">
         <canvas id="myChart" width="400" height="200"></canvas>
     </div>
-
     <div style="overflow: hidden;width:50%;">
-        <canvas id="c" width="700" height="1000"></canvas>
+        <canvas id="c" width="1000" height="1000"></canvas>
     </div>
 </div>
 <script>
-
     function runGraph() {
         var indexCounter = 0;
         var cas = <?php echo json_encode($cas); ?>;
@@ -102,8 +94,6 @@ if (isset($_REQUEST['cislo'])) {
                 }
             }
         });
-
-
         setInterval(function addValue() {
             if (indexCounter < 402) {
                 myChart.data.datasets[0].data.push(lietadlo[indexCounter]);
@@ -115,7 +105,6 @@ if (isset($_REQUEST['cislo'])) {
         }, 100);
     }
 </script>
-
 <script>
     function radians_to_degrees(radians)
     {
@@ -123,7 +112,6 @@ if (isset($_REQUEST['cislo'])) {
         return radians * (180/pi);
     }
     function runAnimation() {
-
         var array = [];
         var array2 = [];
         var array_length;
@@ -170,17 +158,12 @@ if (isset($_REQUEST['cislo'])) {
         })();
     }
 </script>
-
 <?php
 if ($_REQUEST['graf'] == true) {
-    echo '<script type="text/javascript">
-runGraph();
-</script>';
+    echo '<script>runGraph();</script>';
 }
 if ($_REQUEST['animacia'] == true ) {
-    echo '<script type="text/javascript">
-runAnimation();
-</script>';
+    echo '<script>runAnimation();</script>';
 }
 ?>
 </body>

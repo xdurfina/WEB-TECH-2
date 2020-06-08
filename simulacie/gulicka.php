@@ -1,21 +1,12 @@
 <?php
 $pos = 0;
-
 if (isset($_REQUEST['cislo'])) {
 
-    $hodnota = $_REQUEST['cislo'];
-
-//    $cmd45= "octave --eval -p /public_html 'diary on'";
-//    $cmdxx="octave --eval '1+1'";
-//exec($cmd45,$von);
-//exec($cmdxx,$ven);
-//var_dump($ven);
+    $hodnota = strval($_REQUEST['cislo']);
 
     $cmd = "octave -H ../octave-modely/gulicka.m $hodnota $pos 2>&1";
     exec($cmd, $output);
     $finalout = array();
-
-
 
     foreach ($output as $value) {
         $localstring = substr($value, 2);
@@ -29,19 +20,11 @@ if (isset($_REQUEST['cislo'])) {
     unset($finalout[4]);
     unset($finalout[5]);
 
-
-
-
     $cas = array_slice($finalout, 0, 501);
     $poziciaGulicky = array_slice($finalout, -1002, 501);
     $naklonTyce = array_slice($finalout, 1002);
-
-
 }
-
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,18 +36,14 @@ if (isset($_REQUEST['cislo'])) {
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.6.3/fabric.min.js"></script>
-
 </head>
 <body>
-
 <br>
-
 <h3 style="text-align: center">Simulácia - Gulička</h3>
 <form action="gulicka.php" method="post">
     <label for="cislo">Pozicia guličky:</label>
-    <input type="text" name="cislo" id="cislo" required>
+    <input style="width: 100px;" type="number" name="cislo" id="cislo" required max="150" min="-150" placeholder="<-150, 150>">
     <label for="graf">Graf</label>
     <input type="checkbox" name="graf" id="graf">
     <label for="animacia">Animacia</label>
@@ -72,18 +51,15 @@ if (isset($_REQUEST['cislo'])) {
     <input type="submit" value="Submit">
     <?php echo "Zadana hodnota:" . $hodnota ?>
 </form>
-
 <div style="overflow: hidden;">
     <div style="width:50%; height:500px;float: left;">
         <canvas id="myChart" width="400" height="200"></canvas>
     </div>
-
-    <div style="overflow: hidden;width:50%; ">
-        <canvas id="c" width="600" height="500"></canvas>
+    <div style="overflow: hidden;width:50%;">
+        <canvas id="c" width="1000" height="400"></canvas>
     </div>
 </div>
 <script>
-
     function runGraph() {
         var indexCounter = 0;
         var cas = <?php echo json_encode($cas); ?>;
@@ -93,7 +69,6 @@ if (isset($_REQUEST['cislo'])) {
         var casGraf = [];
         var poziciaGulickyGraf = [];
         var naklonTyceGraf = [];
-
 
         var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
@@ -123,7 +98,6 @@ if (isset($_REQUEST['cislo'])) {
             }
         });
 
-
         setInterval(function addValue() {
             if (indexCounter < 202) {
                 myChart.data.datasets[0].data.push(poziciaGulicky[indexCounter]);
@@ -135,8 +109,6 @@ if (isset($_REQUEST['cislo'])) {
         }, 100);
     }
 </script>
-
-
 <script>
     function radians_to_degrees(radians)
     {
@@ -157,9 +129,8 @@ if (isset($_REQUEST['cislo'])) {
                 return document.getElementById(id)
             };
 
-
             fabric.Image.fromURL('../obrazky/ball_base.png', function(img) {
-                img1 = img.scale(0.35).set({
+                img1 = img.scale(0.5).set({
                     left: 100,
                     top: 190,
                     selectable: false,
@@ -167,13 +138,13 @@ if (isset($_REQUEST['cislo'])) {
                     originY: 'center',
                 });
                 fabric.Image.fromURL('../obrazky/ball.png', function(img) {
-                    img2 = img.scale(0.35).set({
+                    img2 = img.scale(0.5).set({
                         left: 100,
-                        top: 170,
+                        top: 158,
                         selectable: false,
                     });
                     canvas.add(group = new fabric.Group([ img1, img2],
-                        {   left: 300,
+                        {   left: 400,
                             top: 250,
                             originX: 'center',
                             originY: 'center',
@@ -196,24 +167,16 @@ if (isset($_REQUEST['cislo'])) {
                     canvas.renderAll();
                 }
             }, 100);
-
         })();
     }
 </script>
-
 <?php
 if ($_REQUEST['graf'] == true) {
-    echo '<script type="text/javascript">
-runGraph();
-</script>';
+    echo '<script>runGraph();</script>';
 }
 if ($_REQUEST['animacia'] == true ) {
-    echo '<script type="text/javascript">
-runAnimation();
-</script>';
+    echo '<script>runAnimation();</script>';
 }
 ?>
-
-
 </body>
 </html>
