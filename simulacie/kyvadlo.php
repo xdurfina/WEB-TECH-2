@@ -4,7 +4,7 @@ $pos = 0;
 if (isset($_REQUEST['cislo'])) {
 
     $hodnota = $_REQUEST['cislo'];
-    $cmd = "octave -H octave-modely/kyvadlo.m $hodnota $pos 2>&1";
+    $cmd = "octave -H ../octave-modely/kyvadlo.m $hodnota $pos 2>&1";
     exec($cmd, $output);
     $finalout = array();
 
@@ -65,7 +65,7 @@ if (isset($_REQUEST['cislo'])) {
         <canvas id="myChart" width="400" height="200"></canvas>
     </div>
 
-    <div style="overflow: hidden;width:50%;border: 1px solid black">
+    <div style="overflow: hidden;width:50%;">
         <canvas id="c" width="600" height="450"></canvas>
     </div>
 </div>
@@ -144,7 +144,7 @@ if (isset($_REQUEST['cislo'])) {
                 return document.getElementById(id)
             };
 
-            fabric.Image.fromURL('obrazky/pendulum_base.png', function(img) {
+            fabric.Image.fromURL('../obrazky/pendulum_base.png', function(img) {
                 img2 = img.scale(0.35).set({
                     left: 180,
                     top: 335,
@@ -153,11 +153,12 @@ if (isset($_REQUEST['cislo'])) {
                 canvas.add(img2);
             });
 
-            fabric.Image.fromURL('obrazky/pendulum_stick.png', function(img) {
-                img1 = img.scale(0.5).set({  left: 180,
+            fabric.Image.fromURL('../obrazky/pendulum_stick.png', function(img) {
+                img1 = img.scale(0.5).set({  left: 250,
                     top: 360,
                     selectable: false,
                     originY: 'bottom',
+                    originX: 'center',
 
                 });
                 canvas.add(img1);
@@ -172,7 +173,7 @@ if (isset($_REQUEST['cislo'])) {
             setInterval(function () {
                 if (i < array_length - 1) {
                     i++;
-                    canvas.getObjects()[1].left = (180 + array[i]*50);
+                    canvas.getObjects()[1].left = (250 + array[i]*50);
                     canvas.getObjects()[1].angle = -(array2[i]*50);
                     canvas.getObjects()[0].left = (180 + array[i]*50);
                     canvas.renderAll();

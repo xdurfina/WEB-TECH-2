@@ -4,7 +4,7 @@ $pos = 0;
 if (isset($_REQUEST['cislo'])) {
 
     $hodnota = $_REQUEST['cislo'];
-    $cmd = "octave -H octave-modely/lietadlo.m $hodnota $pos 2>&1";
+    $cmd = "octave -H ../octave-modely/lietadlo.m $hodnota $pos 2>&1";
     exec($cmd, $output);
     $finalout = array();
 
@@ -43,9 +43,9 @@ if (isset($_REQUEST['cislo'])) {
 <body>
 <br>
 <h3 style="text-align: center">Simulácia - Lietadlo</h3>
-<form action="plane.php" method="post">
+<form action="lietadlo.php" method="post">
     <label for="cislo">Velkost prekazky:</label>
-    <input type="text" name="cislo" id="cislo">
+    <input type="text" name="cislo" id="cislo" required placeholder="od -1  do 1">
     <label for="graf">Graf</label>
     <input type="checkbox" name="graf" id="graf">
     <label for="animacia">Animacia</label>
@@ -136,12 +136,12 @@ if (isset($_REQUEST['cislo'])) {
                 return document.getElementById(id)
             };
 
-            fabric.Image.fromURL('obrazky/lietadlo.png', function(img) {
+            fabric.Image.fromURL('../obrazky/lietadlo.png', function(img) {
                 img1 = img.scale(0.35).set({  left: 100,
                     top: 105,
                     selectable: false,
                 });
-                fabric.Image.fromURL('obrazky/flap.png', function(img) {
+                fabric.Image.fromURL('../obrazky/flap.png', function(img) {
                     img2 = img.scale(0.35).set({
                         left: 180,
                         top: 170,

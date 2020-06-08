@@ -4,7 +4,7 @@ $pos = 0;
 if (isset($_REQUEST['cislo'])) {
 
     $hodnota = $_REQUEST['cislo'];
-    $cmd = "octave -H octave-modely/tlmic.m $hodnota $pos 2>&1";
+    $cmd = "octave -H ../octave-modely/tlmic.m $hodnota $pos 2>&1";
     exec($cmd, $output);
     $finalout = array();
 
@@ -62,7 +62,7 @@ if (isset($_REQUEST['cislo'])) {
         <canvas id="myChart" width="400" height="200"></canvas>
     </div>
 
-    <div style="overflow: hidden;width:50%; border: 1px solid black">
+    <div style="overflow: hidden;width:50%;">
         <canvas id="c" width="600" height="400"></canvas>
     </div>
 </div>
@@ -149,7 +149,7 @@ if (isset($_REQUEST['cislo'])) {
                 canvas.add(img);
             });
 
-            fabric.Image.fromURL('obrazky/car_wheel.png', function (img2) {
+            fabric.Image.fromURL('../obrazky/car_wheel.png', function (img2) {
                 img2.scale(0.5).set({
                     left: 144,
                     top: 160,
@@ -160,7 +160,7 @@ if (isset($_REQUEST['cislo'])) {
                 canvas.add(img2);
             });
 
-            fabric.Image.fromURL('obrazky/car_wheel.png', function (img3) {
+            fabric.Image.fromURL('../obrazky/car_wheel.png', function (img3) {
                 img3.scale(0.5).set({
                     left: 444,
                     top: 160,

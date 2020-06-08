@@ -11,7 +11,7 @@ if (isset($_REQUEST['cislo'])) {
 //exec($cmdxx,$ven);
 //var_dump($ven);
 
-    $cmd = "octave -H octave-modely/gulicka.m $hodnota $pos 2>&1";
+    $cmd = "octave -H ../octave-modely/gulicka.m $hodnota $pos 2>&1";
     exec($cmd, $output);
     $finalout = array();
 
@@ -64,7 +64,7 @@ if (isset($_REQUEST['cislo'])) {
 <h3 style="text-align: center">Simulácia - Gulička</h3>
 <form action="gulicka.php" method="post">
     <label for="cislo">Pozicia guličky:</label>
-    <input type="text" name="cislo" id="cislo">
+    <input type="text" name="cislo" id="cislo" required>
     <label for="graf">Graf</label>
     <input type="checkbox" name="graf" id="graf">
     <label for="animacia">Animacia</label>
@@ -78,7 +78,7 @@ if (isset($_REQUEST['cislo'])) {
         <canvas id="myChart" width="400" height="200"></canvas>
     </div>
 
-    <div style="overflow: hidden;width:50%; border: 1px solid black">
+    <div style="overflow: hidden;width:50%; ">
         <canvas id="c" width="600" height="500"></canvas>
     </div>
 </div>
@@ -158,7 +158,7 @@ if (isset($_REQUEST['cislo'])) {
             };
 
 
-            fabric.Image.fromURL('obrazky/ball_base.png', function(img) {
+            fabric.Image.fromURL('../obrazky/ball_base.png', function(img) {
                 img1 = img.scale(0.35).set({
                     left: 100,
                     top: 190,
@@ -166,7 +166,7 @@ if (isset($_REQUEST['cislo'])) {
                     originX: 'center',
                     originY: 'center',
                 });
-                fabric.Image.fromURL('obrazky/ball.png', function(img) {
+                fabric.Image.fromURL('../obrazky/ball.png', function(img) {
                     img2 = img.scale(0.35).set({
                         left: 100,
                         top: 170,

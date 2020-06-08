@@ -39,10 +39,10 @@
                     Simulations
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Gulička</a>
-                    <a class="dropdown-item" href="#">Lietadlo</a>
+                    <a class="dropdown-item" href="simulacie/gulicka.php">Gulička</a>
+                    <a class="dropdown-item" href="simulacie/lietadlo.php">Lietadlo</a>
                     <a class="dropdown-item" href="simulacie/tlmic.php">Tlmič</a>
-                    <a class="dropdown-item" href="#">Prevrátené kyvadlo</a>
+                    <a class="dropdown-item" href="simulacie/kyvadlo.php">Prevrátené kyvadlo</a>
                 </div>
             </li>
         </ul>
