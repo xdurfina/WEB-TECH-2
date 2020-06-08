@@ -38,7 +38,7 @@ if (isset($_REQUEST['cislo'])) {
 <h3 style="text-align: center">Simulácia - Tlmič auta</h3>
 <form action="tlmic.php" method="post">
     <label for="cislo">Velkost prekazky:</label>
-    <input style="width: 100px;" type="number" name="cislo" id="cislo" required min="-100" max="100" placeholder="<-50, 100>">
+    <input style="width: 100px;" type="number" name="cislo" id="cislo" required min="-100" max="100" placeholder="<-100, 100>">
     <label for="graf">Graf</label>
     <input type="checkbox" name="graf" id="graf">
     <label for="animacia">Animacia</label>
