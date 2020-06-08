@@ -2,17 +2,10 @@
 <project version="4">
   <component name="PublishConfigData" autoUpload="Always" showNewOnSourceInSync="false">
     <serverData>
-      <paths name="Octave">
+      <paths name="simon">
         <serverdata>
           <mappings>
-            <mapping deploy="/zaverecnaJaro/git_stranka" local="$PROJECT_DIR$" web="/" />
-          </mappings>
-        </serverdata>
-      </paths>
-      <paths name="Webtech 2">
-        <serverdata>
-          <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/zaverecny_projekPATULI" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
