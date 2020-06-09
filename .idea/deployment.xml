@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="webtech2">
+  <component name="PublishConfigData" serverName="webtech2">
     <serverData>
       <paths name="webtech2">
         <serverdata>
           <mappings>
-            <mapping deploy="/zaverecny_projekt_simon" local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="/zaverecny_projekt" local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
     </serverData>
-    <option name="myAutoUpload" value="ALWAYS" />
   </component>
 </project>
